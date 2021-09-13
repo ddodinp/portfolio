@@ -36,6 +36,23 @@ homeContactBtn.addEventListener('click', () => {
     scrollIntoView('#contact');
 });
 
+//Make home slowly fade to transparent as the window scrolls down
+//document.querySelector를 이용해 #home을 가져와서 변수에 할당하기
+
+// home 배경말고 안에 내용만 투명도 조절
+const home = document.querySelector('.home__container');
+const homeHeight = home.getBoundingClientRect().height;
+//스크롤할때 이벤트 등록
+document.addEventListener('scroll', () => {
+    home.style.opacity = 1 - window.scrollY / homeHeight;
+    console.log(1 - window.scrollY / homeHeight);
+    //ex)
+    //1 - '(0 / 800)= 1' = 1(opacity)
+    //1 - '(400 / 800)= 0.5' = 0.5(opacity)
+    //1 - '(800 / 800)= 0' = 0(opacity)
+});
+
+
 //스크롤이벤트 중복부분은 함수로 지정 : 함수명은 임의로 지정, selector만 추가하면 함수 실행되게 함
 function scrollIntoView(selector) {
     const scrollTo = document.querySelector(selector);
