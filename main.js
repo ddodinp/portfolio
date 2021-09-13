@@ -16,6 +16,7 @@ document.addEventListener('scroll', () => {
     }
 });
 
+
 // Handle scrolling when tapping on the navbar menu
 const navbarMenu = document.querySelector('.navbar__menu');
 //navbarMenu에 이벤트를 추가할 건데, 클릭한 요소에 다음의 함수를 실행하게 한다
@@ -26,8 +27,19 @@ navbarMenu.addEventListener('click', (event) => {
     if (link == null) {
         return;
     }
+    navbarMenu.classList.remove('open');
     scrollIntoView(link);
 });
+
+
+// Navbar toggle button for small screen
+const navbarToggleBtn = document.querySelector('.navbar__toggle-btn');
+navbarToggleBtn.addEventListener('click', () => {
+    navbarMenu.classList.toggle('open');
+});
+
+
+
 
 // handle click on the conctact me button on home!
 const homeContactBtn = document.querySelector('.home__contact');
@@ -119,9 +131,14 @@ workBtnContainer.addEventListener('click', (e) => {
 });
 
 
-
 //스크롤이벤트 중복부분은 함수로 지정 : 함수명은 임의로 지정, selector만 추가하면 함수 실행되게 함
 function scrollIntoView(selector) {
     const scrollTo = document.querySelector(selector);
     scrollTo.scrollIntoView({ behavior: "smooth" });
 }
+
+// const toggleBtn = document.querySelector('.navbar__toggle-btn');
+// const navbarMenu = document.querySelector('.navbar__menu');
+// toggleBtn.addEventListener('click', () => {
+//     navbarMenu.style.display = "block";
+// });
