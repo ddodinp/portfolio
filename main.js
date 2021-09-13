@@ -78,6 +78,15 @@ workBtnContainer.addEventListener('click', (e) => {
         return;
     }
 
+    //Remove selection from the previous item and select the new one
+    const active = document.querySelector('.category__btn.selected')
+    active.classList.remove('selected');
+    // ? : 문법 = ? 앞의 조건이 맞으면 ? 다음실행하고, 아니면 : 다음을 실행
+    // = span일때를 말함
+    const target = e.target.nodeName === 'BUTTON' ? e.target : e.target.parentNode;
+    target.classList.add('selected');
+
+
     // 사라지는애니메이션 추가-> 필터링 -> 0.3초 뒤에 다시 나타나는 애니메이션 순서
     projectContainer.classList.add('anim-out');
 
