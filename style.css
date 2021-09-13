@@ -458,6 +458,28 @@
   color: var(--color-yellow);
 }
 
+/* Scroll  */
+.arrow-up {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  width: 70px;
+  height: 70px;
+  font-size: 50px;
+  background-color: var(--color-pink);
+  color: var(--color-white);
+  border-radius: 50%;
+  /* display : none 일 경우는 애니메이션 적용 x */
+  opacity: 0;
+  /* 눈에 안보이긴 하지만 자리는 차지하므로 버튼 포인터가 생성되서 클릭도 되는 이슈 발생 : pointer-event: none 으로 포인터 없애줌 */
+  pointer-events: none;
+  transition: opacity 300ms ease-in;
+}
+.arrow-up.visible {
+  pointer-events: auto;
+  opacity: 1;
+}
+
 /* For below 768px screen width */
 @media screen and (max-width: 768px) {
   .navbar__toggle-btn {

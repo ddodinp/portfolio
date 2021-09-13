@@ -52,6 +52,23 @@ document.addEventListener('scroll', () => {
     //1 - '(800 / 800)= 0' = 0(opacity)
 });
 
+// Show "arrow up" button when scrolling down
+const arrowUp = document.querySelector('.arrow-up') 
+document.addEventListener('scroll', () => {
+    // 윈도우 스크롤이 홈높이의 반정도 도달했을 때
+    if(window.scrollY > homeHeight / 2) {
+        arrowUp.classList.add('visible');
+    } else {
+        arrowUp.classList.remove('visible');
+    }
+});
+
+// Handle click on the "arrow up" button
+arrowUp.addEventListener('click', () => {
+    scrollIntoView('#home');
+});
+
+
 
 //스크롤이벤트 중복부분은 함수로 지정 : 함수명은 임의로 지정, selector만 추가하면 함수 실행되게 함
 function scrollIntoView(selector) {
