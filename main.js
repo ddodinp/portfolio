@@ -38,7 +38,6 @@ homeContactBtn.addEventListener('click', () => {
 
 //Make home slowly fade to transparent as the window scrolls down
 //document.querySelector를 이용해 #home을 가져와서 변수에 할당하기
-
 // home 배경말고 안에 내용만 투명도 조절
 const home = document.querySelector('.home__container');
 const homeHeight = home.getBoundingClientRect().height;
@@ -66,6 +65,48 @@ document.addEventListener('scroll', () => {
 // Handle click on the "arrow up" button
 arrowUp.addEventListener('click', () => {
     scrollIntoView('#home');
+});
+
+//Projects filtering****************************************************************
+const workBtnContainer = document.querySelector('.work__categories');
+const projectContainer = document.querySelector('.work__projects');
+const projects = document.querySelectorAll('.project');
+workBtnContainer.addEventListener('click', (e) => {
+    //숫자 span클릭시 = filter가 텅빈 undefined라면 or ||연산자 추가해서 e.target의 부모노드의 dataset filter값을 적용하라
+    const filter = e.target.dataset.filter || e.target.parentNode.dataset.filter;
+    if(filter == null) {
+        return;
+    }
+
+    // 사라지는애니메이션 추가-> 필터링 -> 0.3초 뒤에 다시 나타나는 애니메이션 순서
+    projectContainer.classList.add('anim-out');
+
+    setTimeout(() => {
+        projects.forEach((project) => {
+            console.log(project.dataset.type);
+            if(filter === '*' || filter === project.dataset.type) {
+                project.classList.remove('invisible');
+            } else {
+                project.classList.add('invisible');
+            }
+        });
+        projectContainer.classList.remove('anim-out');
+    }, 300);
+
+    // // 위의 forEach문과 같은 공식 2가지
+    // //    1.     = 
+    // console.log(`----------`);
+    // for(let project of projects) {
+    //     console.log(project);
+    // }
+    // //    2.     = 
+    // console.log(`----------`);
+    // let project;
+    // for(let i = 0; i < projects.length; i++ ) {
+    //     project = projects[i];
+    //     console.log(project);
+    // }
+
 });
 
 
